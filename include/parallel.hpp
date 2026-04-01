@@ -11,6 +11,33 @@
   #define pardo for
 #endif
 
+inline int get_thread_id() {
+#ifdef _OPENMP
+  return omp_get_thread_num();
+#else
+  return 0;
+#endif
+}
+
+inline int get_max_threads() {
+#ifdef _OPENMP
+  return omp_get_max_threads();
+#else
+  return 1;
+#endif
+}
+
+inline void print_thread_iteration(int i) {
+#ifdef _OPENMP
+  #pragma omp critical
+  {
+    std::cout << "Thread ID: " << omp_get_thread_num() << " i: " << i << std::endl;
+  }
+#else
+  std::cout << "Thread ID: 0 i: " << i << std::endl;
+#endif
+}
+
 // Funzione inline per evitare multiple definition
 inline void printVector(const std::vector<int>& vec) {
     int n = vec.size() - 1;
@@ -34,6 +61,8 @@ inline int pow2(int exp) {
 inline bool isPowerOfTwo(int n) {
     return n > 0 && (n & (n - 1)) == 0;
 }
+
+
 
 
 #endif // PARALLEL_UTILS_H

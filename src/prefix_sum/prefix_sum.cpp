@@ -73,25 +73,27 @@ vector<int> Prefix_Sum_iterative(int n, const std::vector<int>& A) {
 
 int main() {
     
-    std::vector<int> A = {3, 4, -1, 5, -3, 2, 3, -8};
+    vector<int> A = {3, 4, -1, 5, -3, 2, 3, -8};
     int n = A.size();
     assert((n & (n-1)) == 0 && "n must be a power of 2!");
     push_front(A, 0); // Add dummy element at index 0 for 1-based indexing
 
-    std::cout << "A: ";
+    cout << "OpenMP max threads available: " << get_max_threads() << std::endl;
+
+    cout << "A: ";
     printVector(A);
-    std::vector<int> B;
+    vector<int> B;
 
     B = Prefix_Sum_recursive(n, A);
 
-    std::cout << "Recursive:\n";
-    std::cout << "B: ";
+    cout << "Recursive:\n";
+    cout << "B: ";
     printVector(B);
 
     B = Prefix_Sum_iterative(n, A);
 
-    std::cout << "Iterative:\n";
-    std::cout << "B: ";
+    cout << "Iterative:\n";
+    cout << "B: ";
     printVector(B);
     return 0;
 }
