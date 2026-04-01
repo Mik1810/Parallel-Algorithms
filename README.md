@@ -13,7 +13,7 @@ sudo apt-get install libomp-dev
 ## Project Structure
 
 - `src/` — C++ implementation of some parallel algorithms.
-- `include/parallel.hpp` — Utility header: macro `pardo` andother utilities to facilitate parallel programming.
+- `include/parallel.hpp` — Utility header: macro `pardo` and other utilities to facilitate parallel programming.
 - `bin/` — Folder to store compiled executables.
 
 ## Compilation
@@ -53,8 +53,10 @@ pardo (int i = 1; i <= n; ++i) {
 ## Algorithms Provided
 
 **Prefix Sum**
-- Recursive Prefix Sum (Scan)
-- Iterative Prefix Sum 
+- Recursive Prefix Sum
+- Iterative Prefix Sum
+- 
+**Other**
 
 Both versions are implemented in `src/prefix_sum/prefix_sum.cpp`.
 
@@ -62,7 +64,7 @@ Both versions are implemented in `src/prefix_sum/prefix_sum.cpp`.
 
 - All arrays use 1-based indexing for full correspondence with theoretical pseudocode.
 - The helper function `push_front` (in `include/parallel.hpp`) can be used to convert a 0-based vector to 1-based by inserting a dummy element at the front.
-- The helper function `pow2(int exp)` is provided for readability when working with powers of two. I choose not to use `std::pow` for integer powers of two to avoid that the returend type is a double and needed a cast.
+- The helper function `pow2(int exp)` is provided for readability when working with powers of two. I choose not to use `std::pow` for integer powers of two to avoid that the returned type is a double and needed a cast.
 - The helper function `isPowerOfTwo(int n)` checks if the input size is valid for the algorithms.
 
 ---
