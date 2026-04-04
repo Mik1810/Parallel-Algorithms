@@ -15,9 +15,6 @@ sudo apt-get install libomp-dev
 - `src/` — C++ implementation of some parallel algorithms.
 - `include/parallel.hpp` — Utility header: macro `pardo` and other utilities to facilitate parallel programming.
 - `bin/` — Folder to store compiled executables.
-- `src/merge/` — Merge algorithms from the Divide and Conquer lesson.
-- `src/prefix_sum/` — Recursive and iterative prefix sum implementations.
-- `src/pointer_jumping/` — Pointer jumping algorithms on rooted forests.
 
 ## Compilation
 
