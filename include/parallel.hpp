@@ -54,15 +54,4 @@ inline void push_front(std::vector<int>& A, int value) {
   A.insert(A.begin(), value);
 }
 
-inline int pow2(int exp) {
-    return 1 << exp; // 2^exp using bit shift
-}
-
-inline bool isPowerOfTwo(int n) {
-    return n > 0 && (n & (n - 1)) == 0;
-}
-
-
-
-
 #endif // PARALLEL_UTILS_H

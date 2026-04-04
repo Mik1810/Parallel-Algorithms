@@ -4,17 +4,11 @@
 #include <algorithm>
 #include <vector>
 
-struct Subproblem {
-    int aLeft;
-    int aRight;
-    int bLeft;
-    int bRight;
+struct Pair {
+    std::vector<int> A;
+    std::vector<int> B;
     int cLeft;
 };
-
-inline int length(int left, int right) {
-    return (left <= right) ? right - left + 1 : 0;
-}
 
 inline bool are_distinct(const std::vector<int>& A, const std::vector<int>& B) {
     const int n = static_cast<int>(A.size()) - 1;

@@ -33,18 +33,6 @@ For example, to compile the prefix sum program:
 g++ -fopenmp -Iinclude src/prefix_sum/prefix_sum.cpp -o bin/prefix_sum
 ```
 
-To compile the pointer jumping program:
-
-```bash
-g++ -fopenmp -Iinclude src/pointer_jumping/pointer_jumping.cpp -o bin/pointer_jumping
-```
-
-To compile the divide and conquer merge program:
-
-```bash
-g++ -fopenmp -Iinclude src/merge/merge.cpp -o bin/merge
-```
-
 ## Macro `pardo` for Parallel Loops
 
 The macro `pardo` allows you to write parallel for-loops in a style similar to PRAM pseudocode:
@@ -83,16 +71,15 @@ Additional notes about the gap between PRAM pseudocode and OpenMP synchronizatio
 
 **Divide and Conquer**
 - Parallel merge by ranks and binary search
-- Work-optimal merge via subproblem generation (not implemented yet)
+- Work-optimal merge via subproblem generation
 
-The current code in `src/merge/merge.cpp` includes the first merge algorithm and a placeholder for `Optimal_Merge`.
+Both versions are implemented in `src/merge/merge.cpp`.
 
 ## Notes
 
 - All arrays use 1-based indexing for full correspondence with theoretical pseudocode.
 - The helper function `push_front` (in `include/parallel.hpp`) can be used to convert a 0-based vector to 1-based by inserting a dummy element at the front.
-- The helper function `pow2(int exp)` is provided for readability when working with powers of two. I choose not to use `std::pow` for integer powers of two to avoid that the returned type is a double and needed a cast.
-- The helper function `isPowerOfTwo(int n)` checks if the input size is valid for the algorithms.
+- The helper functions `pow2(int exp)` and `isPowerOfTwo(int n)` are defined in `src/prefix_sum/prefix_sum.hpp`, so the prefix-sum-specific utilities stay local to that lesson.
 
 ---
 

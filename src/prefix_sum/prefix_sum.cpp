@@ -3,6 +3,7 @@
 #include <cmath>
 #include <cassert>
 #include "parallel.hpp"
+#include "prefix_sum.hpp"
 
 using namespace std;
 
@@ -74,9 +75,11 @@ vector<int> Prefix_Sum_iterative(int n, const std::vector<int>& A) {
 int main() {
     
     vector<int> A = {3, 4, -1, 5, -3, 2, 3, -8};
+    vector<int> expected = {3, 7, 6, 11, 8, 10, 13, 5};
     int n = A.size();
-    assert((n & (n-1)) == 0 && "n must be a power of 2!");
+    assert(isPowerOfTwo(n) && "n must be a power of 2!");
     push_front(A, 0); // Add dummy element at index 0 for 1-based indexing
+    push_front(expected, 0);
 
     cout << "OpenMP max threads available: " << get_max_threads() << std::endl;
 
@@ -89,11 +92,13 @@ int main() {
     cout << "Recursive:\n";
     cout << "B: ";
     printVector(B);
+    assert(B == expected && "Prefix_Sum_recursive returned an unexpected result.");
 
     B = Prefix_Sum_iterative(n, A);
 
     cout << "Iterative:\n";
     cout << "B: ";
     printVector(B);
+    assert(B == expected && "Prefix_Sum_iterative returned an unexpected result.");
     return 0;
 }
