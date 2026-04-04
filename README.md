@@ -3,7 +3,7 @@
 
 ## Requirements
 
-To compile and run the parallel prefix sum algorithms with OpenMP, install the OpenMP library:
+To compile and run the OpenMP-based algorithms in this repository, install the OpenMP library:
 
 ```bash
 sudo apt-get update
@@ -15,6 +15,8 @@ sudo apt-get install libomp-dev
 - `src/` — C++ implementation of some parallel algorithms.
 - `include/parallel.hpp` — Utility header: macro `pardo` and other utilities to facilitate parallel programming.
 - `bin/` — Folder to store compiled executables.
+- `src/prefix_sum/` — Recursive and iterative prefix sum implementations.
+- `src/pointer_jumping/` — Pointer jumping algorithms on rooted forests.
 
 ## Compilation
 
@@ -28,6 +30,12 @@ For example, to compile the prefix sum program:
 
 ```bash
 g++ -fopenmp -Iinclude src/prefix_sum/prefix_sum.cpp -o bin/prefix_sum
+```
+
+To compile the pointer jumping program:
+
+```bash
+g++ -fopenmp -Iinclude src/pointer_jumping/pointer_jumping.cpp -o bin/pointer_jumping
 ```
 
 ## Macro `pardo` for Parallel Loops
@@ -55,10 +63,16 @@ pardo (int i = 1; i <= n; ++i) {
 **Prefix Sum**
 - Recursive Prefix Sum
 - Iterative Prefix Sum
-- 
-**Other**
 
 Both versions are implemented in `src/prefix_sum/prefix_sum.cpp`.
+
+**Pointer Jumping**
+- Root finding in a forest
+- Pointer prefix sum on trees
+
+Both versions are implemented in `src/pointer_jumping/pointer_jumping.cpp`.
+
+Additional notes about the gap between PRAM pseudocode and OpenMP synchronization are available in `src/pointer_jumping/README.md`.
 
 ## Notes
 
