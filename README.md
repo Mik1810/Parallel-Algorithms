@@ -15,6 +15,7 @@ sudo apt-get install libomp-dev
 - `src/` — C++ implementation of some parallel algorithms.
 - `include/parallel.hpp` — Utility header: macro `pardo` and other utilities to facilitate parallel programming.
 - `bin/` — Folder to store compiled executables.
+- `src/merge/` — Merge algorithms from the Divide and Conquer lesson.
 - `src/prefix_sum/` — Recursive and iterative prefix sum implementations.
 - `src/pointer_jumping/` — Pointer jumping algorithms on rooted forests.
 
@@ -36,6 +37,12 @@ To compile the pointer jumping program:
 
 ```bash
 g++ -fopenmp -Iinclude src/pointer_jumping/pointer_jumping.cpp -o bin/pointer_jumping
+```
+
+To compile the divide and conquer merge program:
+
+```bash
+g++ -fopenmp -Iinclude src/merge/merge.cpp -o bin/merge
 ```
 
 ## Macro `pardo` for Parallel Loops
@@ -73,6 +80,12 @@ Both versions are implemented in `src/prefix_sum/prefix_sum.cpp`.
 Both versions are implemented in `src/pointer_jumping/pointer_jumping.cpp`.
 
 Additional notes about the gap between PRAM pseudocode and OpenMP synchronization are available in `src/pointer_jumping/README.md`.
+
+**Divide and Conquer**
+- Parallel merge by ranks and binary search
+- Work-optimal merge via subproblem generation (not implemented yet)
+
+The current code in `src/merge/merge.cpp` includes the first merge algorithm and a placeholder for `Optimal_Merge`.
 
 ## Notes
 
