@@ -9,7 +9,7 @@
 using namespace std;
 
 static vector<Point> Sequential_Upper_Hull(const vector<Point>& S) {
-    const int n = int(S.size()) - 1;
+    const int n = S.size() - 1;
 
     if (n <= 2) {
         return S;
@@ -28,19 +28,20 @@ static vector<Point> Sequential_Upper_Hull(const vector<Point>& S) {
 }
 
 static pair<int, int> Upper_Common_Tangent(const vector<Point>& UH1, const vector<Point>& UH2) {
-    const int n1 = int(UH1.size()) - 1;
-    const int n2 = int(UH2.size()) - 1;
+    const int a = Argmax_Y(UH1);
+    const int b = Argmax_Y(UH2);
 
-    for (int i = 1; i <= n1; ++i) {
-        for (int j = 1; j <= n2; ++j) {
-            if (is_upper_tangent(UH1, UH2, i, j)) {
-                return {i, j};
-            }
-        }
+    if (UH1[a].y < UH2[b].y) {
+        const int z2 = b;
+        const int z1 = Find_Min_Slope_Point(UH1, a, UH2[z2]);
+        assert(is_upper_tangent(UH1, UH2, z1, z2) && "The tangent endpoint on UH1 is inconsistent.");
+        return {z1, z2};
     }
 
-    assert(false && "Upper common tangent not found.");
-    return {0, 0};
+    const int z1 = a;
+    const int z2 = Find_Max_Slope_Point(UH1[z1], UH2, b);
+    assert(is_upper_tangent(UH1, UH2, z1, z2) && "The tangent endpoint on UH2 is inconsistent.");
+    return {z1, z2};
 }
 
 static vector<Point> Combine_Upper_Hulls(const vector<Point>& UH1, const vector<Point>& UH2) {
@@ -93,7 +94,7 @@ static vector<Point> Upper_Hull(const vector<Point>& S) {
 
 int main() {
     vector<Point> S = {
-        {1, 0},
+        {1, 1},
         {2, 4},
         {3, 10},
         {4, 8},
@@ -104,7 +105,7 @@ int main() {
     };
 
     vector<Point> expected = {
-        {1, 0},
+        {1, 1},
         {3, 10},
         {5, 14},
         {7, 7},
@@ -127,6 +128,9 @@ int main() {
     printPoints(UH);
 
     assert(UH == expected && "Upper_Hull returned an unexpected result.");
+
+    Write_SVG(S, UH, "src/convex_hull/convex_hull.svg");
+    cout << "SVG: convex_hull.svg\n";
 
     return 0;
 }

@@ -80,6 +80,8 @@ Both versions are implemented in `src/merge/merge.cpp`.
 
 The current convex hull prototype is implemented in `src/convex_hull/convex_hull.cpp`.
 
+![Convex hull upper hull example](src/convex_hull/convex_hull.svg)
+
 ## Notes
 
 - All arrays use 1-based indexing for full correspondence with theoretical pseudocode.
